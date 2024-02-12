@@ -1,14 +1,14 @@
 from typing import List, Set, Tuple
 
 
-def create_intervals(numbers: Set[int]) -> List[Tuple[int, int]]:
+def create_intervals(data: Set[int]) -> List[Tuple[int, int]]:
     """
     Create unit intervals from a set of numbers.
     """
     intervals = []
     start = None
     last = None
-    for number in sorted(numbers):
+    for number in sorted(data):
         if not start:
             start = number
             last = number
@@ -18,7 +18,8 @@ def create_intervals(numbers: Set[int]) -> List[Tuple[int, int]]:
             intervals.append((start, last))
             start = number
             last = number
-    intervals.append((start, last))
+    if start is not None:
+        intervals.append((start, last))
     
     return intervals
 
